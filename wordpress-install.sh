@@ -14,6 +14,12 @@ mkfs.ext3 -L root /dev/xvda
 mount /dev/xvda /mnt/root
 
 #wget turnkey tarball and vm-firtsboot
+######################################################################################################
+### BELOW IS POSSIBLE CHANGE LINK TO XEN TARBALL
+### HERE IS LIST OF IMAGES: http://mirror2.hs-esslingen.de/turnkeylinux.org/xen/
+### IT IS SUFFICIENT TO COPY NAME AND PASTE IT AFTER LAST '/' IN LINK INSTEAD tunrkey-wordpress-12.0...
+### IF YOU CHANGE IMAGE PLEASE EDIT ALL 3 LINE BELOW SIMILAR
+######################################################################################################
 wget -q -P /mnt/root http://mirror2.hs-esslingen.de/turnkeylinux.org/xen/turnkey-wordpress-12.0-squeeze-x86-xen.tar.bz2 > /dev/null
 tar jxf /mnt/root/turnkey-wordpress-12.0-squeeze-x86-xen.tar.bz2 -C /mnt/root/
 rm -f /mnt/root/turnkey-wordpress-12.0-squeeze-x86-xen.tar.bz2
