@@ -15,8 +15,9 @@ mount /dev/xvda /mnt/root
 
 #wget turnkey tarball and vm-firtsboot
 ######################################################################################################
-### BELOW IS POSSIBLE CHANGE LINK TO XEN TARBALL
+### BELOW IS POSSIBLE CHANGE LINK TO XEN TARBALL TO INSTALL OTHER TURNKEY IMAGE
 ### HERE IS LIST OF IMAGES: http://mirror2.hs-esslingen.de/turnkeylinux.org/xen/
+### OR OTHERS MIRROR: http://www.turnkeylinux.org/mirrors (check if it's up-to-date)
 ### IT IS SUFFICIENT TO COPY NAME AND PASTE IT AFTER LAST '/' IN LINK INSTEAD tunrkey-wordpress-12.0...
 ### IF YOU CHANGE IMAGE PLEASE EDIT ALL 3 LINE BELOW SIMILAR
 ######################################################################################################
