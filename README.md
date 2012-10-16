@@ -1,4 +1,4 @@
-virtualmaster-turnkey-import
+virtualmaster-turnkey-import -- IN HOT PROGRESS!!!!
 ============================
 
 How-to and script for import TurnKey Linux into www.virtualmaster.com
