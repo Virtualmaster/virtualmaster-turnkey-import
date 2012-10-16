@@ -9,11 +9,13 @@ Make only a few steps to start fully prepared TurnKey image, ready-to-use soluti
 
 * Create virtual server with whatever image and turn on it.
 
-* After complete boot shutdown and start "Boot rescue"
+* After complete boot shutdown and start "Boot rescue".
 
-* In pop-up console window remember root password and IP address
+* Remember root password and IP address showed in pop-up console and close it.
 
+* Clone this repository or download install script
 
+	https://raw.github.com/pulecp/virtualmaster-turnkey-import/master/wordpress-install.sh
 
 * Now open terminal on your computer and run:
 
