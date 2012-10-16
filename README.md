@@ -31,6 +31,7 @@ The how-to and the script for import **TurnKey Linux** into www.virtualmaster.co
 
 ## Other images
 This example is for WordPress. Advanced can simply edit install script and **deploy all Turnkey Linux** images.
+Editable part is highlighted in script by box from '#'.
 
 ## Why too much work
 It's not possible to install anything in virtualization environment like on a classic architecture. We must adjust
