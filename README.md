@@ -29,7 +29,7 @@ How-to and the script for import **TurnKey Linux** into www.virtualmaster.com.
 #### Enjoy TurnKey
 9) Remember root password for login over ssh. Passwords to application (e.g. WordPress), MySQL and others you find in **/root/passwords.txt**.
 
-## Other images
+## Other images by customizing install script
 This example is for WordPress. Advanced can simply edit install script and **deploy all Turnkey Linux** images.
 Editable part is highlighted in script by box from '#'.
 
