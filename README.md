@@ -13,7 +13,7 @@ How-to and the script for import **TurnKey Linux** into www.virtualmaster.com.
 
 3) Remember root password and IP address your new server showed in pop-up console and close it.
 #### Download script on your computer and run it on server
-4) Download install script from this repository. Default is installed Wordpress. To change image read section **Other images by customizing install script**:
+4) Download install script from this repository. Default will be installed Wordpress. To change image read section **Other images by customizing install script**:
 
     wget --no-check-certificate https://raw.github.com/pulecp/virtualmaster-turnkey-import/master/install.sh
 
