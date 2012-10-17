@@ -59,6 +59,7 @@ cat>/etc/inithooks.conf<<EOF
 export HUB_APIKEY=SKIP
 export DB_PASS=$DB_PASS
 export APP_EMAIL=test@domain.com
+export APP_DOMAIN=domain.com
 export APP_PASS=$APP_PASS
 export SEC_UPDATES=FORCE
 export ETCKEEPER_COMMIT=SKIP
@@ -66,11 +67,17 @@ EOF
 
 #write passwords into /root/passwords.txt
 cat>/root/passwords.txt<<EOF
-Password into MySQL database: $DB_PASS
-Default e-mail: test@domain.com
+Here is general settings and login information used for all images.
+For example your image needn't have database. Password is generated but nowhere used.
 
+Default e-mail (used only in selected images): test@domain.com
+Default domain (used only in selected images): domain.com
+
+Password into database: $DB_PASS
 Username into application: admin
 Password into application: $APP_PASS
+
+For example webmin managment is accessable by username: root and your root password.
 EOF
 
 #remove turnkey script editing root password
