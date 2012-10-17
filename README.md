@@ -44,4 +44,4 @@ renaming devices, over changing network configuration to generating new password
 
 ## Requirements
 Minimal RAM size: 256MB
-
+Minimal disc size: 2048MB

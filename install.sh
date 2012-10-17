@@ -7,22 +7,20 @@ genpasswd() {
 #generate password and save image name
 DB_PASS=`genpasswd`
 APP_PASS=`genpasswd`
-TK_IMAGE='turnkey-wordpress-12.0-squeeze-x86-xen.tar.bz2'
+TK_IMAGE='turnkey-zurmo-12.0-squeeze-x86-xen.tar.bz2'
 
 #create new filesystem, mount it
 mkdir -p /mnt/root
 mkfs.ext3 -L root /dev/xvda
 mount /dev/xvda /mnt/root
 
-#wget turnkey tarball and vm-firtsboot
-######################################################################################################
-### BELOW IS POSSIBLE CHANGE LINK TO XEN TARBALL TO INSTALL OTHER TURNKEY IMAGE
-### HERE IS LIST OF IMAGES: http://mirror2.hs-esslingen.de/turnkeylinux.org/xen/
-### OR OTHERS MIRROR: http://www.turnkeylinux.org/mirrors (check if it's up-to-date)
-### IT IS SUFFICIENT TO COPY NAME AND PASTE IT AFTER LAST '/' IN LINK INSTEAD tunrkey-wordpress-12.0...
-### IF YOU CHANGE IMAGE PLEASE EDIT ALL 3 LINE BELOW SIMILAR
-######################################################################################################
-wget -q -P /mnt/root http://mirror2.hs-esslingen.de/turnkeylinux.org/xen/$TK_IMAGE > /dev/null
+#wget turnkey tarball and vm-firtsboot; two mirror for failed download
+wget -q -P /mnt/root http://mirror2.hs-esslingen.de/turnkeylinux.org/xen/$TK_IMAGE || rm -f /mnt/root/$TK_IMAGE
+if [ ! -f "$TK_IMAGE" ]; then
+	wget -q -P /mnt/root http://ftp.halifax.rwth-aachen.de/turnkeylinux/xen/$TK_IMAGE || echo "It's not able download image...exiting"
+	exit 1
+fi
+	
 tar jxf /mnt/root/$TK_IMAGE -C /mnt/root/
 rm -f /mnt/root/$TK_IMAGE
 wget -q -P /mnt/root/root --no-check-certificate https://github.com/Virtualmaster/virtualmaster-firstboot/raw/master/virtualmaster-firstboot_0.2-1_all.deb > /dev/null
