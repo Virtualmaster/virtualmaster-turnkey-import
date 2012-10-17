@@ -13,13 +13,13 @@ How-to and the script for import **TurnKey Linux** into www.virtualmaster.com.
 
 3) Remember root password and IP address your new server showed in pop-up console and close it.
 #### Download script on your computer and run it on server
-4) Download install script from this repository:
+4) Download install script from this repository. Default is installed Wordpress. To change image read section **Other images by customizing install script**:
 
-    wget --no-check-certificate https://raw.github.com/pulecp/virtualmaster-turnkey-import/master/wordpress-install.sh
+    wget --no-check-certificate https://raw.github.com/pulecp/virtualmaster-turnkey-import/master/install.sh
 
 5) Now open terminal on your computer and run this, where x.x.x.x is IP address your server:
 	
-    ssh root@x.x.x.x 'sh -s' < wordpress-install.sh
+    ssh root@x.x.x.x 'sh -s' < install.sh
 
 6) After ending ssh connection (terminal promt returns on your computer) go on website with your server and open "Console". Here only press "Enter" and close this pop-up console window.
 #### Create your new image
@@ -44,12 +44,4 @@ renaming devices, over changing network configuration to generating new password
 
 ## Requirements
 Minimal RAM size: 256MB
-
-
-
-
-
-
-
-
 
