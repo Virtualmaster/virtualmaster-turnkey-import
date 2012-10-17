@@ -2,7 +2,7 @@
 
 ### 9 steps to start fully prepared TurnKey image, ready-to-use solution www.turnkeylinux.org!
 
-The how-to and the script for import **TurnKey Linux** into www.virtualmaster.com.
+How-to and the script for import **TurnKey Linux** into www.virtualmaster.com.
 
 ## Install
 
