@@ -92,11 +92,9 @@ mount --bind /dev /mnt/root/dev
 mount -t tmpfs tmpfs /mnt/root/dev/shm
 mount -t devpts devpts /mnt/root/dev/pts
 
-
 #run script in chroot and delete it
 chroot /mnt/root /root/script_chroot.sh
 rm -f /mnt/root/root/script_chroot.sh
 
-exit
 rm -f /mnt/root/root/.bash_history
 poweroff

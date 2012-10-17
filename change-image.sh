@@ -38,5 +38,3 @@ else
 	fi
 fi
 done
-
-
