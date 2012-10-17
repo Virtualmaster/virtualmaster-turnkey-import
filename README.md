@@ -30,8 +30,13 @@ How-to and the script for import **TurnKey Linux** into www.virtualmaster.com.
 9) Remember root password for login over ssh. Passwords to application (e.g. WordPress), MySQL and others you find in **/root/passwords.txt**.
 
 ## Other images by customizing install script
-This example is for WordPress. Advanced can simply edit install script and **deploy all Turnkey Linux** images.
-Editable part is highlighted in script by box from '#'.
+install.sh is prepared for install WordPress. You can **deploy all Turnkey Linux** images of course.
+Only download change_install.sh and run it. This script is interactive and edits install.sh. Internet connection needed!:
+
+	wget --no-check-certificate https://raw.github.com/pulecp/virtualmaster-turnkey-import/master/change-image.sh
+	./change-image.sh
+
+Now you can continue with step number 5.
 
 ## Why too much work
 It's not possible to install anything in virtualization environment like on a classic architecture. We must adjust
