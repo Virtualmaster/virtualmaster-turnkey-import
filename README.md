@@ -36,7 +36,7 @@ Only download change-install.sh and run it. This script is interactive and edits
 	wget --no-check-certificate https://raw.github.com/pulecp/virtualmaster-turnkey-import/master/change-image.sh
 	./change-image.sh
 
-Now you can continue with step number 5.
+Now you can continue in installation with step number 5.
 
 ## Why too much work
 It's not possible to install anything in virtualization environment like on a classic architecture. We must adjust
@@ -46,8 +46,17 @@ Xen hypervisor.
 Nevertheless this is only begin of whole automatization of installation process. We must then edit this "tarball". From
 renaming devices, over changing network configuration to generating new passwords. All changes are visible in install script.
 
+## Entrails
+
+If you take a look at the scripts which is launched on your remote server via ssh, you can see downloading your image and
+.deb package firstboot from our github https://github.com/Virtualmaster. This package hooks first boot and prepares the system to get right network settings.
+Next important part is generating secure passwords for databases and applications. This passwords togehter with other
+credentials is saved in root home directory. TurnKey sets this password at first boot thanks to "inithooks"
+http://www.turnkeylinux.org/docs/inithooks
+
+In the scripts are duplicated two mirrors to avoiding unavailability. List of mirrors is here: http://www.turnkeylinux.org/mirrors
 
 ## Requirements
 * Minimal RAM size: 256MB
-* Minimal HDD size: 2048MB
+* Minimal HDD size: 2048MB (depends on size of image)
 
