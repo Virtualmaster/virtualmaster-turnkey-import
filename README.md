@@ -49,10 +49,11 @@ renaming devices, over changing network configuration to generating new password
 ## Entrails
 
 If you take a look at the scripts which is launched on your remote server via ssh, you can see downloading your image and
-.deb package firstboot from our github https://github.com/Virtualmaster. This package hooks first boot and prepares the system to get right network settings.
+.deb package firstboot from our GitHub https://github.com/Virtualmaster. This package hooks first boot and prepares the system to get right network settings.
 Next important part is generating secure passwords for databases and applications. This passwords togehter with other
-credentials is saved in root home directory. TurnKey sets this password at first boot thanks to "inithooks"
-http://www.turnkeylinux.org/docs/inithooks
+credentials is saved in root home directory. Thanks this feature you can start and immediatelly use your new server with
+TurnKey Linux. TurnKey sets this password at first boot thanks to "inithooks"
+http://www.turnkeylinux.org/docs/inithooks. Inithooks should be universal for all TurnKey images.
 
 In the scripts are duplicated two mirrors to avoiding unavailability. List of mirrors is here: http://www.turnkeylinux.org/mirrors
 
