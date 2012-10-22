@@ -14,12 +14,12 @@ mkdir -p /mnt/root
 mkfs.ext3 -L root /dev/xvda
 mount /dev/xvda /mnt/root
 
-#wget turnkey tarball and vm-firtsboot; two mirror for failed download
-wget -q -P /mnt/root http://mirror2.hs-esslingen.de/turnkeylinux.org/xen/$TK_IMAGE || rm -f /mnt/root/$TK_IMAGE
-if [ ! -f "$TK_IMAGE" ]; then
-	wget -q -P /mnt/root http://ftp.halifax.rwth-aachen.de/turnkeylinux/xen/$TK_IMAGE || echo "It's not able download image...exiting"
-	exit 1
-fi
+#wget turnkey tarball and vm-firtsboot; two mirror for failed download (in progress)
+wget -q -P /mnt/root http://mirror2.hs-esslingen.de/turnkeylinux.org/xen/$TK_IMAGE # || rm -f /mnt/root/$TK_IMAGE
+#if [ ! -f "$TK_IMAGE" ]; then
+#	wget -q -P /mnt/root http://ftp.halifax.rwth-aachen.de/turnkeylinux/xen/$TK_IMAGE || echo "It's not able download image...exiting"
+#	exit 1
+#fi
 	
 tar jxf /mnt/root/$TK_IMAGE -C /mnt/root/
 rm -f /mnt/root/$TK_IMAGE
