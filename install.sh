@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "Please wait..."
+
 genpasswd() {
 	tr -dc A-Za-z0-9_ < /dev/urandom | head -c 10 | xargs
 	}
@@ -7,11 +9,11 @@ genpasswd() {
 #generate password and save image name
 DB_PASS=`genpasswd`
 APP_PASS=`genpasswd`
-TK_IMAGE='turnkey-wordpress-12.0-squeeze-x86-xen.tar.bz2'
+TK_IMAGE='turnkey-lamp-12.0-squeeze-x86-xen.tar.bz2'
 
 #create new filesystem, mount it
 mkdir -p /mnt/root
-mkfs.ext3 -L root /dev/xvda
+mkfs.ext3 -L root /dev/xvda >/dev/null
 mount /dev/xvda /mnt/root
 
 #wget turnkey tarball and vm-firtsboot; two mirror for failed download (in progress)
@@ -35,15 +37,15 @@ cat >/etc/fstab <<EOF
 EOF
 
 #set locale
-sed 's/# en_US.UTF-8/en_US.UTF-8/' -i /etc/locale.gen
-locale-gen
+sed 's/# en_US.UTF-8/en_US.UTF-8/' -i /etc/locale.gen >/dev/null
+locale-gen >/dev/null
 
 #install vm-firstboot
-dpkg -i /root/virtualmaster-firstboot_0.2-1_all.deb
+dpkg -i /root/virtualmaster-firstboot_0.2-1_all.deb >/dev/null
 rm -f /root/virtualmaster-firstboot_0.2-1_all.deb
 
 #remove resolvconf
-apt-get -y remove resolvconf
+apt-get -y remove resolvconf >/dev/null 2>&1
 
 #edit /boot/grub/menu.lst
 sed 's#\<root=#init=/sbin/init.vmin root=#' -i /boot/grub/menu.lst
@@ -97,4 +99,8 @@ chroot /mnt/root /root/script_chroot.sh
 rm -f /mnt/root/root/script_chroot.sh
 
 rm -f /mnt/root/root/.bash_history
+
+echo "Size of image on the device:"
+df -h | grep "/dev/xvda"
+echo "Creating OK"
 poweroff
