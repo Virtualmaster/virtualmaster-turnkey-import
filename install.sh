@@ -9,11 +9,11 @@ genpasswd() {
 #generate password and save image name
 DB_PASS=`genpasswd`
 APP_PASS=`genpasswd`
-TK_IMAGE='turnkey-lamp-12.0-squeeze-x86-xen.tar.bz2'
+TK_IMAGE='turnkey-redmine-12.0-squeeze-x86-xen.tar.bz2'
 
 #create new filesystem, mount it
 mkdir -p /mnt/root
-mkfs.ext3 -L root /dev/xvda >/dev/null
+mkfs.ext3 -L root /dev/xvda >/dev/null 2>&1
 mount /dev/xvda /mnt/root
 
 #wget turnkey tarball and vm-firtsboot; two mirror for failed download (in progress)
