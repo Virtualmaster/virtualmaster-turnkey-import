@@ -9,7 +9,7 @@ genpasswd() {
 #generate password and save image name
 DB_PASS=`genpasswd`
 APP_PASS=`genpasswd`
-TK_IMAGE='turnkey-redmine-12.0-squeeze-x86-xen.tar.bz2'
+TK_IMAGE='turnkey-rails-12.0-squeeze-x86-xen.tar.bz2'
 
 #create new filesystem, mount it
 mkdir -p /mnt/root
@@ -102,5 +102,5 @@ rm -f /mnt/root/root/.bash_history
 
 echo "Size of image on the device:"
 df -h | grep "/dev/xvda"
-echo "Creating OK"
+echo "Creating done"
 poweroff
