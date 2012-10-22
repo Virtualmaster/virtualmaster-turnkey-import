@@ -9,7 +9,7 @@ How-to and the script for import **TurnKey Linux** into www.virtualmaster.com.
 #### Create server
 1) Create virtual server with whatever image and turn it on.
 #### Boot rescue
-2) After complete boot shutdown and start "Boot rescue".
+2) After complete boot "Shutdown" and start "Boot rescue".
 
 3) Remember root password and IP address your new server showed in pop-up console and close it.
 #### Download script on your computer and run it on server
