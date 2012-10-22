@@ -4,7 +4,6 @@ options=`wget -q -O - http://ftp.halifax.rwth-aachen.de/turnkeylinux/xen/ | sed 
 
 if [ "`echo $options | grep "turnkey"`" = "" ]; then
 	options=`wget -q -O - http://mirror2.hs-esslingen.de/turnkeylinux.org/xen/ | sed -n '/\.tar\.bz2">/ s/.*href="\(turnkey.*bz2\)".*/\1/p'`
-	echo KOKOKOK
 fi
 
 if [ "`echo $options | grep "turnkey"`" = "" ]; then

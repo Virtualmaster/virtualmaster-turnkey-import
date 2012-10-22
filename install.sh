@@ -7,7 +7,7 @@ genpasswd() {
 #generate password and save image name
 DB_PASS=`genpasswd`
 APP_PASS=`genpasswd`
-TK_IMAGE='turnkey-appengine-java-12.0-squeeze-x86-xen.tar.bz2'
+TK_IMAGE='turnkey-wordpress-12.0-squeeze-x86-xen.tar.bz2'
 
 #create new filesystem, mount it
 mkdir -p /mnt/root
