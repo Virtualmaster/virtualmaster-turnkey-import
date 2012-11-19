@@ -31,7 +31,7 @@ How-to and the script for import **TurnKey Linux** into www.virtualmaster.com.
 
 ## Other images by customizing install script
 install.sh is prepared for install WordPress. You can **deploy all Turnkey Linux** images of course.
-Only download change-install.sh and run it. This script is interactive and edits install.sh. Internet connection needed!:
+Only download change-image.sh and run it. This script is interactive and edits install.sh. Internet connection needed!:
 
 	wget --no-check-certificate https://raw.github.com/pulecp/virtualmaster-turnkey-import/master/change-image.sh
 	./change-image.sh
