@@ -17,7 +17,7 @@ How-to and the script for import **TurnKey Linux** into www.virtualmaster.com.
 
     wget --no-check-certificate https://raw.github.com/pulecp/virtualmaster-turnkey-import/master/install.sh
 
-5) Now open terminal on your computer and run this, where x.x.x.x is IP address your server:
+5) Now open terminal on your computer and run this (it may take a few minutes), where x.x.x.x is IP address your server:
 	
     ssh root@x.x.x.x 'sh -s' < install.sh
 
