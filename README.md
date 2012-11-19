@@ -59,5 +59,5 @@ In the scripts are duplicated two mirrors to avoiding unavailability. List of mi
 
 ## Requirements
 * Minimal RAM size: 256MB
-* Minimal HDD size: 2048MB (depends on size of image)
+* Minimal HDD size: 1536MB (depends on size of image)
 
