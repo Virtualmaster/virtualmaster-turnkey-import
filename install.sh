@@ -1,29 +1,30 @@
 #!/bin/sh
 
+echo "Please wait..."
+
 genpasswd() {
 	tr -dc A-Za-z0-9_ < /dev/urandom | head -c 10 | xargs
 	}
 
-#generate password
+#generate password and save image name
 DB_PASS=`genpasswd`
 APP_PASS=`genpasswd`
+TK_IMAGE='turnkey-rails-12.0-squeeze-x86-xen.tar.bz2'
 
 #create new filesystem, mount it
 mkdir -p /mnt/root
-mkfs.ext3 -L root /dev/xvda
+mkfs.ext3 -L root /dev/xvda >/dev/null 2>&1
 mount /dev/xvda /mnt/root
 
-#wget turnkey tarball and vm-firtsboot
-######################################################################################################
-### BELOW IS POSSIBLE CHANGE LINK TO XEN TARBALL TO INSTALL OTHER TURNKEY IMAGE
-### HERE IS LIST OF IMAGES: http://mirror2.hs-esslingen.de/turnkeylinux.org/xen/
-### OR OTHERS MIRROR: http://www.turnkeylinux.org/mirrors (check if it's up-to-date)
-### IT IS SUFFICIENT TO COPY NAME AND PASTE IT AFTER LAST '/' IN LINK INSTEAD tunrkey-wordpress-12.0...
-### IF YOU CHANGE IMAGE PLEASE EDIT ALL 3 LINE BELOW SIMILAR
-######################################################################################################
-wget -q -P /mnt/root http://mirror2.hs-esslingen.de/turnkeylinux.org/xen/turnkey-wordpress-12.0-squeeze-x86-xen.tar.bz2 > /dev/null
-tar jxf /mnt/root/turnkey-wordpress-12.0-squeeze-x86-xen.tar.bz2 -C /mnt/root/
-rm -f /mnt/root/turnkey-wordpress-12.0-squeeze-x86-xen.tar.bz2
+#wget turnkey tarball and vm-firtsboot; two mirror for failed download (in progress)
+wget -q -P /mnt/root http://mirror2.hs-esslingen.de/turnkeylinux.org/xen/$TK_IMAGE # || rm -f /mnt/root/$TK_IMAGE
+#if [ ! -f "$TK_IMAGE" ]; then
+#	wget -q -P /mnt/root http://ftp.halifax.rwth-aachen.de/turnkeylinux/xen/$TK_IMAGE || echo "It's not able download image...exiting"
+#	exit 1
+#fi
+	
+tar jxf /mnt/root/$TK_IMAGE -C /mnt/root/
+rm -f /mnt/root/$TK_IMAGE
 wget -q -P /mnt/root/root --no-check-certificate https://github.com/Virtualmaster/virtualmaster-firstboot/raw/master/virtualmaster-firstboot_0.2-1_all.deb > /dev/null
 
 #create script run under chroot
@@ -36,15 +37,15 @@ cat >/etc/fstab <<EOF
 EOF
 
 #set locale
-sed 's/# en_US.UTF-8/en_US.UTF-8/' -i /etc/locale.gen
-locale-gen
+sed 's/# en_US.UTF-8/en_US.UTF-8/' -i /etc/locale.gen >/dev/null
+locale-gen >/dev/null
 
 #install vm-firstboot
-dpkg -i /root/virtualmaster-firstboot_0.2-1_all.deb
+dpkg -i /root/virtualmaster-firstboot_0.2-1_all.deb >/dev/null
 rm -f /root/virtualmaster-firstboot_0.2-1_all.deb
 
 #remove resolvconf
-apt-get -y remove resolvconf
+apt-get -y remove resolvconf >/dev/null 2>&1
 
 #edit /boot/grub/menu.lst
 sed 's#\<root=#init=/sbin/init.vmin root=#' -i /boot/grub/menu.lst
@@ -59,6 +60,7 @@ cat>/etc/inithooks.conf<<EOF
 export HUB_APIKEY=SKIP
 export DB_PASS=$DB_PASS
 export APP_EMAIL=test@domain.com
+export APP_DOMAIN=domain.com
 export APP_PASS=$APP_PASS
 export SEC_UPDATES=FORCE
 export ETCKEEPER_COMMIT=SKIP
@@ -66,11 +68,17 @@ EOF
 
 #write passwords into /root/passwords.txt
 cat>/root/passwords.txt<<EOF
-Password into MySQL database: $DB_PASS
-Default e-mail: test@domain.com
+Here is general settings and login information used for all images.
+For example your image needn't have database. Password is generated but nowhere used.
 
+Default e-mail (used only in selected images): test@domain.com
+Default domain (used only in selected images): domain.com
+
+Password into database: $DB_PASS
 Username into application: admin
 Password into application: $APP_PASS
+
+For example webmin managment is accessable by username: root and your root password.
 EOF
 
 #remove turnkey script editing root password
@@ -86,11 +94,13 @@ mount --bind /dev /mnt/root/dev
 mount -t tmpfs tmpfs /mnt/root/dev/shm
 mount -t devpts devpts /mnt/root/dev/pts
 
-
 #run script in chroot and delete it
 chroot /mnt/root /root/script_chroot.sh
 rm -f /mnt/root/root/script_chroot.sh
 
-exit
 rm -f /mnt/root/root/.bash_history
+
+echo "Size of image on the device:"
+df -h | grep "/dev/xvda"
+echo "Creating done"
 poweroff
